@@ -8,8 +8,10 @@ MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
-    jeedomAPIKEY = self.config.get("secret").get("jeedomAPIKEY")
-    jeedomIP = self.config.get("secret").get("jeedomIP")   
+    jeedomAPIKEY = conf["secret"].get("jeedomAPIKEY")
+    #jeedomAPIKEY = self.config.get("secret").get("jeedomAPIKEY")
+    jeedomIP = conf["secret"].get("jeedomIP")    
+    #jeedomIP = self.config.get("secret").get("jeedomIP")   
 
 def intent_received(hermes, intent_message):
 
