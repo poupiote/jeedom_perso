@@ -2,40 +2,14 @@
 from hermes_python.hermes import Hermes
 from datetime import datetime
 from pytz import timezone
+import request
 
 MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
-
-def verbalise_hour(i):
-	if i == 0:
-		return "minuit"
-	elif i == 1:
-		return "une heure"
-	elif i == 12:
-		return "midi"
-	elif i == 21:
-		return "vingt et une heures"
-	else:
-		return "{0} heures".format(str(i)) 
-
-def verbalise_minute(i):
-	if i == 0:
-		return ""
-	elif i == 1:
-		return "une"
-	elif i == 21:
-		return "vingt et une"
-	elif i == 31:
-		return "trente et une"
-	elif i == 41:
-		return "quarante et une"
-	elif i == 51:
-		return "cinquante et une"
-	else:
-		return "{0}".format(str(i)) 
-
+    jeedomAPIKEY = self.config.get("secret").get("jeedomAPIKEY")
+    jeedomIP = self.config.get("secret").get("jeedomIP")   
 
 def intent_received(hermes, intent_message):
 
@@ -43,23 +17,52 @@ def intent_received(hermes, intent_message):
 	print(intent_message.intent.intent_name)
 	print ()
 
-	if intent_message.intent.intent_name == 'Joseph:askTime':
-
-		sentence = 'Il est '
+	if intent_message.intent.intent_name == 'voleurdespace:salonON':       
+    # action code goes here...
+    print '[Received] intent: {}'.format(intentMessage.intent.intent_name)
+    jeedomInteraction = 'allume la lumière du salon'
+    requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+		
+		sentence = 'le salon est allumé '
 		print(intent_message.intent.intent_name)
 
-		now = datetime.now(timezone('Europe/Paris'))
+		#now = datetime.now(timezone('Europe/Paris'))
 
-		sentence += verbalise_hour(now.hour) + " " + verbalise_minute(now.minute)
+		#sentence += verbalise_hour(now.hour) + " " + verbalise_minute(now.minute)
 		print(sentence)
 
-		# hermes.publish_continue_session(intent_message.session_id, sentence, ["Joseph:greetings"])
 		hermes.publish_end_session(intent_message.session_id, sentence)
 
-	elif intent_message.intent.intent_name == 'Joseph:greetings':
+	elif intent_message.intent.intent_name == 'voleurdespace:salonOFF':
+	      jeedomInteraction = 'éteind la lumière du salon'
+              requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+		sentence = 'le salon est éteind '
+		print(intent_message.intent.intent_name)
+		print(sentence)
+		hermes.publish_end_session(intent_message.session_id, sentence)
+	
+	elif intent_message.intent.intent_name == 'voleurdespace:séjourON':
+	      jeedomInteraction = 'allume la lumière du séjour'
+              requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+		sentence = 'le séjour est alumé '
+		print(intent_message.intent.intent_name)
+		print(sentence)
+		hermes.publish_end_session(intent_message.session_id, sentence)
+		
+	elif intent_message.intent.intent_name == 'voleurdespace:séjourON':
+	      jeedomInteraction = 'éteind la lumière du séjour'
+              requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+		sentence = 'le séjour est alumé '
+		print(intent_message.intent.intent_name)
+		print(sentence)
+		hermes.publish_end_session(intent_message.session_id, sentence)
+		
+		#hermes.publish_end_session(intent_message.session_id, "De rien!")
 
-		hermes.publish_end_session(intent_message.session_id, "De rien!")
 
-
+		
+		
+		
+		
 with Hermes(MQTT_ADDR) as h:
 	h.subscribe_intents(intent_received).start()
