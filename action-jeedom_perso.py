@@ -3,6 +3,11 @@ from hermes_python.hermes import Hermes
 from datetime import datetime
 from pytz import timezone
 import request
+import io
+
+jeedomIP=None
+jeedomAPIKEY=None
+CONFIG_INI = "config.ini"
 
 MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
