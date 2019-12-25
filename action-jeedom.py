@@ -43,7 +43,7 @@ def intent_received(hermes, intent_message):
 		print(sentence)
 		hermes.publish_end_session(intent_message.session_id, sentence)
 	
-	elif intent_message.intent.intent_name == 'voleurdespace:séjourON':
+	elif intent_message.intent.intent_name == 'voleurdespace:sejourON':
 	      jeedomInteraction = 'allume la lumière du séjour'
               requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
 		sentence = 'le séjour est alumé '
@@ -51,7 +51,7 @@ def intent_received(hermes, intent_message):
 		print(sentence)
 		hermes.publish_end_session(intent_message.session_id, sentence)
 		
-	elif intent_message.intent.intent_name == 'voleurdespace:séjourON':
+	elif intent_message.intent.intent_name == 'voleurdespace:sejourOFF':
 	      jeedomInteraction = 'éteind la lumière du séjour'
               requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
 		sentence = 'le séjour est alumé '
