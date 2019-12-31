@@ -67,8 +67,72 @@ def intent_received(hermes, intent_message):
 	hermes.publish_end_session(intent_message.session_id, sentence)
 	jeedomInteraction = 'éteind la lumière du séjour'
 	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:lampadaireON':
+	print(intent_message.intent.intent_name)
+	sentence = 'le lampadaire est allumer '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'allume le lampadaire du séjour'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:lampadaireOFF':
+	print(intent_message.intent.intent_name)
+	sentence = 'le lampadaire est aitin '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'éteind le lampadaire du séjour'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:garageON':
+	print(intent_message.intent.intent_name)
+	sentence = 'le garage est allumer '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'allume la lumière du garage'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:garageOFF':
+	print(intent_message.intent.intent_name)
+	sentence = 'le garage est aitin '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'éteind la lumière du garage'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:portailOUV':
+	print(intent_message.intent.intent_name)
+	sentence = 'le portail est ouvert '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'ouvre le portail'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:portailFER':
+	print(intent_message.intent.intent_name)
+	sentence = 'le portail est fermai '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'tu peux fermer le portail'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:exterON':
+	print(intent_message.intent.intent_name)
+	sentence = 'les lumiaires extairieur sont allumai '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'allume extèrieur'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:exterOFF':
+	print(intent_message.intent.intent_name)
+	sentence = 'les lumiaires extairieur sont aitinte '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'éteind extèrieur'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+	
 
-	
-	
 with Hermes(MQTT_ADDR) as h:
 	h.subscribe_intents(intent_received).start()
