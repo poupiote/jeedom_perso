@@ -132,7 +132,39 @@ def intent_received(hermes, intent_message):
 	jeedomInteraction = 'éteind extèrieur'
 	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
 	
+    elif intent_message.intent.intent_name == 'voleurdespace:voletsalonOUV':
+	print(intent_message.intent.intent_name)
+	sentence = 'le volet roulant du salon est ouvert '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'ouvre salon'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
 	
-
+    elif intent_message.intent.intent_name == 'voleurdespace:voletsalonFER':
+	print(intent_message.intent.intent_name)
+	sentence = 'le volet roulant du salon est fermer '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'ferme salon'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+		
+    elif intent_message.intent.intent_name == 'voleurdespace:voletsejourOUV':
+	print(intent_message.intent.intent_name)
+	sentence = 'le volet roulant du saijour est ouvert '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'ouvre séjour'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+	
+    elif intent_message.intent.intent_name == 'voleurdespace:voletsejourFER':
+	print(intent_message.intent.intent_name)
+	sentence = 'le volet roulant du saijour est fermer '
+	print(sentence)
+	hermes.publish_end_session(intent_message.session_id, sentence)
+	jeedomInteraction = 'ferme séjour'
+	requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
+		
+		
+		
 with Hermes(MQTT_ADDR) as h:
 	h.subscribe_intents(intent_received).start()
