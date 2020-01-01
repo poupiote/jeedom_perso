@@ -25,10 +25,10 @@ MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
 
-    #jeedomAPIKEY = conf["secret"].get("jeedomAPIKEY")
-jeedomAPIKEY = self.config.get("secret").get("jeedom_API_KEY")
-    #jeedomIP = conf["secret"].get("jeedomIP")    
-jeedomIP = self.config.get("secret").get("jeedom_IP")   
+jeedomAPIKEY = conf["secret"].get("jeedom_API_KEY")
+#jeedomAPIKEY = self.config.get("secret").get("jeedom_API_KEY")
+jeedomIP = conf["secret"].get("jeedom_IP")    
+    #jeedomIP = self.config.get("secret").get("jeedom_IP")   
 
 def intent_received(hermes, intent_message):
 
