@@ -40,7 +40,7 @@ def intent_received(hermes, intent_message):
        print(intent_message.intent.intent_name)
        sentence = 'le salon est allumer '
        print(sentence)
-       hermes.publish_end_session(intent_message.session_id, sentense)
+       hermes.publish_end_session(intent_message.session_id, sentence)
        jeedomInteraction = 'allume la lumière du salon'
        requests.get('http://'+jeedomIP+'/core/api/jeeApi.php?apikey='+jeedomAPIKEY+'&type=interact&query='+jeedomInteraction)
 
