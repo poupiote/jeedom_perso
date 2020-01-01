@@ -25,10 +25,10 @@ MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
 
-jeedomAPIKEY = conf["secret"].get("jeedom_API_KEY")
+#jeedomAPIKEY = conf["secret"].get("jeedom_API_KEY")
 #jeedomAPIKEY = self.config.get("secret").get("jeedom_API_KEY")
-jeedomIP = conf["secret"].get("jeedom_IP")    
-    #jeedomIP = self.config.get("secret").get("jeedom_IP")   
+#jeedomIP = conf["secret"].get("jeedom_IP")    
+#jeedomIP = self.config.get("secret").get("jeedom_IP")   
 
 def intent_received(hermes, intent_message):
 
@@ -36,6 +36,8 @@ def intent_received(hermes, intent_message):
     print(intent_message.intent.intent_name)
     print ()
     # action code goes here...
+    jeedomAPIKEY = conf["secret"].get("jeedom_API_KEY")
+    jeedomIP = conf["secret"].get("jeedom_IP")
     if intent_message.intent.intent_name == 'voleurdespace:salonON':
        print(intent_message.intent.intent_name)
        sentence = 'le salon est allumer '
