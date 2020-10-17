@@ -12,7 +12,7 @@ import datetime
 import pytz
 import json
 
-import requests
+import requests==2.6.0
 
 jeedomIP=None
 jeedomAPIKEY=None
